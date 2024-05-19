@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import _ from "lodash";
 import PropTypes from "prop-types";
 
-const Pagination = (props) => {
-  const { itemsCount, pageSize, currentPage, onPageChange } = props;
-
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
   const pages = _.range(1, pagesCount + 1);
 
@@ -18,9 +16,15 @@ const Pagination = (props) => {
         {pages.map((page) => (
           <li
             key={page}
-            className={page == currentPage ? "page-item active" : "page-item"}
+            className={page === currentPage ? "page-item active" : "page-item"}
+            // eslint-disable-next-line react/jsx-no-comment-textnodes
           >
-            <a className="page-link" onClick={() => onPageChange(page)}>
+            <a
+              // eslint-disable-next-line jsx-a11y/anchor-is-valid
+              className="page-link"
+              href="#"
+              onClick={() => onPageChange(page)}
+            >
               {page}
             </a>
           </li>

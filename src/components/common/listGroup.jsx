@@ -1,7 +1,10 @@
-const ListGroup = (props) => {
-  const { currentGenre, onGenreChange, items, textProperty, valueProperty } =
-    props;
-
+const ListGroup = ({
+  currentGenre,
+  onGenreChange,
+  items,
+  textProperty = "name",
+  valueProperty = "_id",
+}) => {
   // console.log(genres);
   return (
     <ul className="list-group">
@@ -20,11 +23,6 @@ const ListGroup = (props) => {
       ))}
     </ul>
   );
-};
-
-ListGroup.defaultProps = {
-  textProperty: "name",
-  valueProperty: "_id",
 };
 
 export default ListGroup;
