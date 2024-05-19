@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "font-awesome/css/font-awesome.css";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
+import MoviesTable from "./moviesTable";
 import { paginate } from "../utils/paginate";
 import { getMovies } from "../services/fakeMoveieService";
 
@@ -66,6 +67,14 @@ class Movies extends Component {
     return (
       <div className="m-5">
         <p>showing {filteredmovies.length} movies in the database</p>
+        {this.getMoviesClass(
+          movies,
+          pageSize,
+          currentPage,
+          currentGenre,
+          genres,
+          movies.length
+        )}
       </div>
     );
   }
@@ -88,7 +97,11 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <MoviesTable/>
+          <MoviesTable
+            movies={movies}
+            onLike={this.toggleLike}
+            onDelete={this.handleDelete}
+          />
           <Pagination
             itemsCount={filteredcount}
             pageSize={pageSize}

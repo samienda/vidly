@@ -1,8 +1,7 @@
-import React, { Component } from "react";
 import Like from "./common/like";
 
 const MoviesTable = (props) => {
-    const { movies} = props;
+  const { movies, onLike, onDelete } = props;
   return (
     <table className="table">
       <thead>
@@ -16,22 +15,19 @@ const MoviesTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.movies.map((movie) => (
+        {movies.map((movie) => (
           <tr key={movie._id}>
             <th>{movie.title}</th>
             <th>{movie.genre.name}</th>
             <th>{movie.numberInStock}</th>
             <th>{movie.dailyRentalRate}</th>
             <th>
-              <Like
-                liked={movie.liked}
-                onClick={() => this.toggleLike(movie)}
-              />
+              <Like liked={movie.liked} onClick={() => onLike(movie)} />
             </th>
             <th>
               <button
                 className="badge bg-danger"
-                onClick={() => this.handleDelete(movie)}
+                onClick={() => onDelete(movie)}
               >
                 Delete
               </button>
